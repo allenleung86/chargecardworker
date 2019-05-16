@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" id="Definitions_136v1tm" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.1.0">
+  <decision id="approve-payment" name="Approve Payment">
+    <decisionTable id="decisionTable_1">
+      <input id="input_1" label="Item">
+        <inputExpression id="inputExpression_1" typeRef="string">
+          <text>item</text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="Approved" name="approved" typeRef="boolean" />
+      <rule id="DecisionRule_13qdbzm">
+        <inputEntry id="UnaryTests_1jnvyq8">
+          <text>"item-xyz"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0cxyuqu">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1f5n6jw">
+        <inputEntry id="UnaryTests_1a3yjcr">
+          <text>"item-abc"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_02asj3o">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1tuudk5">
+        <inputEntry id="UnaryTests_01i1c67">
+          <text>"item-def"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1chuf21">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0soo8r9">
+        <inputEntry id="UnaryTests_08fzq93">
+          <text>not("item-xyz","item-abc","item-def")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1rqgfzh">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>

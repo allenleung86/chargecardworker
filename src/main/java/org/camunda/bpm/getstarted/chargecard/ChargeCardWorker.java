@@ -30,7 +30,25 @@ public class ChargeCardWorker {
                     // Get a process variable
                     String item = (String) externalTask.getVariable("item");
                     Long amount = (Long) externalTask.getVariable("amount");
-                    LOGGER.info("Charging credit card with an amount of '" + amount + "'€ for the item '" + item + "'...");
+                    LOGGER.info("1:Charging credit card with an amount of '" + amount + "'€ for the item '" + item + "'...");
+
+                    // Complete the task
+                    externalTaskService.complete(externalTask);
+                })
+                .open();
+
+        // subscribe to an external task topic as specified in the process
+        // "charge-card2" 对应payment.bpmn文件里service task "Charge Credit Card2"的topic
+        // bpmn文件路径 D:\data\workspace\IDEA20191\chargecardworker\src\main\resources\payment.bpmn
+        client.subscribe("charge-card2")
+                .lockDuration(1000) // the default lock duration is 20 seconds, but you can override this
+                .handler((externalTask, externalTaskService) -> {
+                    // Put your business logic here
+
+                    // Get a process variable
+                    String item = (String) externalTask.getVariable("item");
+                    Long amount = (Long) externalTask.getVariable("amount");
+                    LOGGER.info("2:Charging credit card with an amount of '" + amount + "'€ for the item '" + item + "'...");
 
                     // Complete the task
                     externalTaskService.complete(externalTask);
